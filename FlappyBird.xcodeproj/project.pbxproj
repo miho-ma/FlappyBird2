@@ -13,7 +13,22 @@
 		CE538C5B29CDC6DD00C48F7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE538C5929CDC6DD00C48F7E /* Main.storyboard */; };
 		CE538C5D29CDC6E000C48F7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE538C5C29CDC6E000C48F7E /* Assets.xcassets */; };
 		CE538C6029CDC6E000C48F7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE538C5E29CDC6E000C48F7E /* LaunchScreen.storyboard */; };
+		CE538C6829CDC9C100C48F7E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE538C6729CDC9C100C48F7E /* GameScene.swift */; };
+		CEF6660F29D42F90007F262C /* getItem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEF6660E29D42F90007F262C /* getItem.mp3 */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CE715AEC29D3FB6A0011D2D6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		CE538C5029CDC6DD00C48F7E /* FlappyBird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlappyBird.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,6 +39,8 @@
 		CE538C5C29CDC6E000C48F7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE538C5F29CDC6E000C48F7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE538C6129CDC6E000C48F7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE538C6729CDC9C100C48F7E /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		CEF6660E29D42F90007F262C /* getItem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = getItem.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +59,7 @@
 			children = (
 				CE538C5229CDC6DD00C48F7E /* FlappyBird */,
 				CE538C5129CDC6DD00C48F7E /* Products */,
+				CE715AE729D3FB5F0011D2D6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,12 +77,21 @@
 				CE538C5329CDC6DD00C48F7E /* AppDelegate.swift */,
 				CE538C5529CDC6DD00C48F7E /* SceneDelegate.swift */,
 				CE538C5729CDC6DD00C48F7E /* ViewController.swift */,
+				CE538C6729CDC9C100C48F7E /* GameScene.swift */,
 				CE538C5929CDC6DD00C48F7E /* Main.storyboard */,
 				CE538C5C29CDC6E000C48F7E /* Assets.xcassets */,
 				CE538C5E29CDC6E000C48F7E /* LaunchScreen.storyboard */,
 				CE538C6129CDC6E000C48F7E /* Info.plist */,
+				CEF6660E29D42F90007F262C /* getItem.mp3 */,
 			);
 			path = FlappyBird;
+			sourceTree = "<group>";
+		};
+		CE715AE729D3FB5F0011D2D6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,6 +104,7 @@
 				CE538C4C29CDC6DC00C48F7E /* Sources */,
 				CE538C4D29CDC6DC00C48F7E /* Frameworks */,
 				CE538C4E29CDC6DC00C48F7E /* Resources */,
+				CE715AEC29D3FB6A0011D2D6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,6 +153,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF6660F29D42F90007F262C /* getItem.mp3 in Resources */,
 				CE538C6029CDC6E000C48F7E /* LaunchScreen.storyboard in Resources */,
 				CE538C5D29CDC6E000C48F7E /* Assets.xcassets in Resources */,
 				CE538C5B29CDC6DD00C48F7E /* Main.storyboard in Resources */,
@@ -140,6 +169,7 @@
 			files = (
 				CE538C5829CDC6DD00C48F7E /* ViewController.swift in Sources */,
 				CE538C5429CDC6DD00C48F7E /* AppDelegate.swift in Sources */,
+				CE538C6829CDC9C100C48F7E /* GameScene.swift in Sources */,
 				CE538C5629CDC6DD00C48F7E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,7 +326,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -324,7 +354,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
