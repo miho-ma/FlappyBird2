@@ -23,6 +23,9 @@ class ViewController: UIViewController {
         let scene = GameScene(size: skView.frame.size)
         
         skView.presentScene(scene)
+        
+//        レビュー時のアドバイスPhysicsの可視化
+//        skView.showsPhysics = true
     }
     
     override var prefersStatusBarHidden: Bool{

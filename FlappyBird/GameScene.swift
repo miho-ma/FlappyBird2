@@ -10,12 +10,12 @@ import AVFoundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-//    疑問↓プロパティの定義の仕方　sizeプロパティはSKSpriseNode？
+//    ↓プロパティ定義の仕方　https://forums.kodeco.com/t/use-skspritenode-or-sknode/5762
     var scrollNode:SKNode!
     var wallNode:SKNode!
     var bird: SKSpriteNode!
-//    var itemNode: SKSpriteNode!
-    var itemNode: SKNode!
+    var itemNode: SKSpriteNode!
+//    var itemNode: SKNode!
     
     
     let birdCategory: UInt32 = 1 << 0
@@ -38,7 +38,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
 
 //        重力の強さ
-        physicsWorld.gravity = CGVector(dx: 0, dy: -1)
+        physicsWorld.gravity = CGVector(dx: 0, dy: -4)
         physicsWorld.contactDelegate = self
         
         backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
@@ -49,8 +49,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wallNode = SKNode()
         scrollNode.addChild(wallNode)
         
-        itemNode = SKNode()
-//        itemNode = SKSpriteNode()
+//        itemNode = SKNode()
+        itemNode = SKSpriteNode()
         scrollNode.addChild(itemNode)
         
         setupGround()
@@ -59,6 +59,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         setupBird()
         setupItem()
         setupScoreLabel()
+        
+//            アイテム取得音
+        if let soundURL = Bundle.main.url(forResource: "getItem", withExtension: "mp3") {
+            do {
+                player = try AVAudioPlayer(contentsOf: soundURL)
+                player?.prepareToPlay()
+            } catch {
+                print("error")
+            }
+        }
+
      }
     
     func setupGround(){
@@ -136,7 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let birdSize = SKTexture(imageNamed: "bird_a").size()
         
 //        隙間の幅
-        let slit_length = birdSize.height * 12
+        let slit_length = birdSize.height * 4
         
         let random_y_range: CGFloat = 60
         
@@ -202,8 +213,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let itemAnimation = SKAction.sequence([moveItem, removeItem])
         
-        let birdSize = SKTexture(imageNamed: "bird_a").size()
-        
         let random_y_range: CGFloat = 300
         
         let groundSize = SKTexture(imageNamed: "ground").size()
@@ -231,14 +240,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             item.addChild(cherry)
             
-            let itemNode = SKNode()
-            itemNode.position = CGPoint(x: cherry.size.width + birdSize.width / 2, y: item_y)
-
-            itemNode.physicsBody = SKPhysicsBody(circleOfRadius: cherry.size.height / 2)
-            itemNode.physicsBody?.categoryBitMask = self.itemCategory
-            itemNode.physicsBody?.isDynamic = false
-
-            item.addChild(itemNode)
             item.run(itemAnimation)
             self.itemNode.addChild(item)
         })
@@ -306,24 +307,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("ItemScoreUp")
             
 //            ABどっちかが鳥でどっちかがアイテム
-//            contact.bodyA.node?.removeFromParent()
-            contact.bodyB.node?.removeFromParent()
-             
-//            アイテム取得音
-            if let soundURL = Bundle.main.url(forResource: "getItem", withExtension: "mp3") {
-                do {
-                    player = try AVAudioPlayer(contentsOf: soundURL)
-                    player?.play()
-                } catch {
-                    print("error")
-                }
+            if (contact.bodyA.categoryBitMask & itemCategory) == itemCategory {
+                contact.bodyA.node?.removeFromParent()
+            } else {
+                contact.bodyB.node?.removeFromParent()
             }
-     
+            
+//        効果音
+            player?.play()
             
             score += 1
+            item_scoreLabelNode.text = "Item Score:\(item_score)"
             item_score += 1
             scoreLabelNode.text = "Score:\(score)"
-            item_scoreLabelNode.text = "Item Score:\(item_score)"
             
             var bestScore = userDefaults.integer(forKey: "BEST")
             if score > bestScore{
