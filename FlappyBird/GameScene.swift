@@ -10,12 +10,11 @@ import AVFoundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-//    ↓プロパティ定義の仕方　https://forums.kodeco.com/t/use-skspritenode-or-sknode/5762
+//    ↓プロパティ定義の仕方 レビューアドバイス（addChildするならSKNode）　https://forums.kodeco.com/t/use-skspritenode-or-sknode/5762
     var scrollNode:SKNode!
     var wallNode:SKNode!
     var bird: SKSpriteNode!
-    var itemNode: SKSpriteNode!
-//    var itemNode: SKNode!
+    var itemNode: SKNode!
     
     
     let birdCategory: UInt32 = 1 << 0
@@ -49,8 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wallNode = SKNode()
         scrollNode.addChild(wallNode)
         
-//        itemNode = SKNode()
-        itemNode = SKSpriteNode()
+        itemNode = SKNode()
         scrollNode.addChild(itemNode)
         
         setupGround()
@@ -146,7 +144,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let birdSize = SKTexture(imageNamed: "bird_a").size()
         
-//        隙間の幅
+//        隙間の幅 4
         let slit_length = birdSize.height * 4
         
         let random_y_range: CGFloat = 60
@@ -316,9 +314,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        効果音
             player?.play()
             
+            item_score += 1
             score += 1
             item_scoreLabelNode.text = "Item Score:\(item_score)"
-            item_score += 1
             scoreLabelNode.text = "Score:\(score)"
             
             var bestScore = userDefaults.integer(forKey: "BEST")
@@ -375,6 +373,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         score = 0
         item_score = 0
+        item_scoreLabelNode.text = "Item Score:\(item_score)"
         scoreLabelNode.text = "Score:\(score)"
         
         bird.position = CGPoint(x: self.frame.size.width * 0.2, y: self.frame.size.height * 0.7)
@@ -382,6 +381,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bird.physicsBody?.collisionBitMask = groundCategory | wallCategory
         bird.zRotation = 0
         
+        itemNode.removeAllChildren()
         wallNode.removeAllChildren()
         bird.speed = 1
         scrollNode.speed = 1
